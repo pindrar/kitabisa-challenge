@@ -31,7 +31,7 @@ export default function Header(props: headerProps) {
         <Box sx={flex1}>
           <Image
             src="/logo.png"
-            alt="Picture of the author"
+            alt="Kitabisa"
             height={37}
             width={179}
           />

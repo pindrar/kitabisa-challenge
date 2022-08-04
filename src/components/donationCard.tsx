@@ -15,7 +15,7 @@ export default function DonationCard(donation: Donation) {
         component="img"
         sx={cardMediaSx}
         image={donation.image}
-        alt="green iguana"
+        alt={donation.title}
       />
       <CardContent>
         <Typography gutterBottom variant="h6" fontSize={16} fontWeight={600}>
