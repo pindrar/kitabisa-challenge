@@ -13,7 +13,7 @@ export interface DonationResponse {
   title: string;
 }
 
-interface Donation {
+export interface Donation {
   campaigner: string;
   badge: string;
   verified: boolean;
@@ -34,6 +34,11 @@ export function setDonations(data: Array<DonationResponse>) {
   donations = data;
 }
 
+function getPercentage(value: number) {
+  const percentage = value * 100
+  return percentage >= 100 ? 100 : Math.ceil(percentage)
+}
+
 export function getDonations() {
   let donationsArray: Donation[] = [];
   donations.map((key) => {
@@ -46,7 +51,7 @@ export function getDonations() {
       type: key.campaigner_type,
       category: key.category_name,
       remaining: key.days_remaining,
-      percentage: key.donation_percentage * 100,
+      percentage: getPercentage(key.donation_percentage),
       received: key.donation_received,
       target: key.donation_target,
       order: key.order,

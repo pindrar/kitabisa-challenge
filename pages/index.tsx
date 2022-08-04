@@ -1,33 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head'
-import Container from '@mui/material/Container';
-import Header from '../src/components/header'
-import CardsContainer from '../src/components/cardsContainer'
-import { getDonationsResponse } from '../src/api/api'
-import { setDonations,getDonations } from '../src/models/donations'
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import Container from "@mui/material/Container";
+import Header from "../src/components/header";
+import CardsContainer from "../src/components/cardsContainer";
+import { getDonationsResponse, getDomain } from "../src/api/api";
+import { setDonations, getDonations, Donation } from "../src/models/donations";
+import axios from "axios";
 
-export default function Home() {
-  //const [donations, setDonations] = useState([]);
+import type { GetServerSideProps, NextPage } from "next";
 
-  useEffect(() => {
-    getDonationsResponse()
-    .then((response:any)=>{
-      setDonations(response.data)
-      console.log(getDonations())
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  });
+type Props = { data: any };
+
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
+  const fullDomain = getDomain(context)
+  const data = await getDonationsResponse(fullDomain);
+
+  return {
+    props: {
+      data
+    },
+  };
+};
+
+export default function Home(props: Props) {
+  if (props) {
+    setDonations(props.data)
+  } 
 
   return (
-    <Container>
+    <Container sx={{
+      marginBottom: 10
+    }}>
       <Head>
         <title>Donations</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
-      <CardsContainer/>
+      <Header />
+      <CardsContainer data={getDonations()}/>
     </Container>
-  )
+  );
 }

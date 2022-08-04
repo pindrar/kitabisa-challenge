@@ -7,44 +7,51 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ProgressBar from './progressBar'
 import Box from "@mui/material/Box";
+import { Donation } from "../models/donations";
 
-export default function DonationCard() {
+export default function DonationCard(donation: Donation) {
   return (
-    <Card >
+    <Card sx={{
+      minHeight: {
+        xs: 300,
+        md: 360
+      }
+    }}>
       <CardMedia
         component="img"
-        height="200"
-        image="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
+        sx={{
+          height: {
+            xs: 160,
+            md: 200
+          }
+        }}
+        image={donation.image}
         alt="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
+        <Typography gutterBottom variant="h6" fontSize={16} fontWeight={600}>
+          {donation.title}
         </Typography>
-        <ProgressBar value={100} />
+        <ProgressBar value={donation.percentage} />
         <Box flexDirection={"row"} display={"flex"} justifyContent={"space-between"}>
           <Box>
-            <Typography variant="body1">
-              Lizard
+            <Typography variant="subtitle2" fontWeight={600}>
+              Terkumpul
             </Typography>
-            <Typography variant="body1">
-              01
+            <Typography variant="subtitle2" >
+              {donation.received}
             </Typography>
           </Box>
           <Box>
-            <Typography variant="body1">
-              Lizard
+            <Typography variant="subtitle2" fontWeight={600}>
+              Sisa Hari
             </Typography>
-            <Typography variant="body1">
-              01
+            <Typography variant="subtitle2">
+              {donation.remaining}
             </Typography>
           </Box>
         </Box>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
     </Card>
   );
 }
