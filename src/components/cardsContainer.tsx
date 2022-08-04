@@ -20,7 +20,7 @@ export default function CardsContainer(props: cardsContainerProps) {
         <Grid container spacing={2}>
           {props.data.map((donation, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <DonationCards {...donation}/>
+              <DonationCards {...donation} />
             </Grid>
           ))}
         </Grid>

@@ -35,31 +35,31 @@ export function setDonations(data: Array<DonationResponse>) {
 }
 
 function getPercentage(value: number) {
-  const percentage = value * 100
-  return percentage >= 100 ? 100 : Math.ceil(percentage)
+  const percentage = value * 100;
+  return percentage >= 100 ? 100 : Math.ceil(percentage);
 }
 
-function compareRemainingDay( a: Donation, b: Donation ) {
-  if ( a.remaining < b.remaining ){
+function compareRemainingDay(a: Donation, b: Donation) {
+  if (a.remaining < b.remaining) {
     return 1;
   }
-  if ( a.remaining > b.remaining ){
+  if (a.remaining > b.remaining) {
     return -1;
   }
   return 0;
 }
 
-function compareGoals( a: Donation, b: Donation ) {
-  if ( a.percentage < b.percentage ){
+function compareGoals(a: Donation, b: Donation) {
+  if (a.percentage < b.percentage) {
     return 1;
   }
-  if ( a.percentage > b.percentage ){
+  if (a.percentage > b.percentage) {
     return -1;
   }
   return 0;
 }
 
-export function getDonations(sort: string | "newest" | "goals" ) {
+export function getDonations(sort: string | "newest" | "goals") {
   let donationsArray: Donation[] = [];
   donations.map((key) => {
     const donation: Donation = {
@@ -77,13 +77,13 @@ export function getDonations(sort: string | "newest" | "goals" ) {
       order: key.order,
     };
 
-    donationsArray.push(donation)
+    donationsArray.push(donation);
   });
 
-  const donationsSort = [...donationsArray]
+  const donationsSort = [...donationsArray];
 
-  if (sort === "newest") donationsSort.sort(compareRemainingDay)
-  if (sort === "goals") donationsSort.sort(compareGoals)
+  if (sort === "newest") donationsSort.sort(compareRemainingDay);
+  if (sort === "goals") donationsSort.sort(compareGoals);
 
   return donationsSort;
 }

@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import PersonIcon from "@mui/icons-material/Person";
-import TodayIcon from '@mui/icons-material/Today';
+import TodayIcon from "@mui/icons-material/Today";
 import DoneIcon from "@mui/icons-material/Done";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
@@ -23,7 +23,7 @@ export interface SimpleDialogProps {
 }
 
 interface headerProps {
-    sortType: (value: string | "newest" | "goals") => void
+  sortType: (value: string | "newest" | "goals") => void;
 }
 
 function SimpleDialog(props: SimpleDialogProps) {
@@ -58,9 +58,7 @@ function SimpleDialog(props: SimpleDialogProps) {
             <ListItemIcon sx={{ minWidth: "35px" }}>
               <TodayIcon />
             </ListItemIcon>
-            <Typography
-              sx={{ fontWeight: isNewestSortActive ? "400" : "300" }}
-            >
+            <Typography sx={{ fontWeight: isNewestSortActive ? "400" : "300" }}>
               Terbaru
             </Typography>
           </ListItemButton>
@@ -89,7 +87,7 @@ function SimpleDialog(props: SimpleDialogProps) {
   );
 }
 
-export default function Header(props:headerProps ) {
+export default function Header(props: headerProps) {
   const [open, setOpen] = React.useState(false);
   const [sortType, setSortType] = React.useState("");
 
@@ -97,9 +95,9 @@ export default function Header(props:headerProps ) {
     setOpen(true);
   };
 
-  const handleClose = (value: string ) => {
+  const handleClose = (value: string) => {
     setOpen(false);
-    props.sortType(value)
+    props.sortType(value);
     setSortType(value);
   };
 
@@ -125,14 +123,16 @@ export default function Header(props:headerProps ) {
         maxWidth: "100vw !important",
       }}
     >
-      <Box sx={{
+      <Box
+        sx={{
           width: {
-              xs: '100vw',
-              md: '1200px'
+            xs: "100vw",
+            md: "1200px",
           },
-          display: 'flex',
-          margin: 'auto'
-      }}>
+          display: "flex",
+          margin: "auto",
+        }}
+      >
         <Box sx={{ flex: 1 }}>
           <Image
             src="/logo.png"
