@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import PersonIcon from "@mui/icons-material/Person";
-import SortByAlphaIcon from "@mui/icons-material/SortByAlpha";
+import TodayIcon from '@mui/icons-material/Today';
 import DoneIcon from "@mui/icons-material/Done";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
@@ -22,10 +22,14 @@ export interface SimpleDialogProps {
   onClose: (value: string) => void;
 }
 
+interface headerProps {
+    sortType: (value: string | "newest" | "goals") => void
+}
+
 function SimpleDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props;
 
-  const isAlphabetSortActive = selectedValue === "alphabet";
+  const isNewestSortActive = selectedValue === "newest";
   const isGoalsSortActive = selectedValue === "goals";
 
   const handleClose = () => {
@@ -43,21 +47,21 @@ function SimpleDialog(props: SimpleDialogProps) {
         <ListItem disablePadding>
           <ListItemButton
             onClick={() => {
-              handleListItemClick("alphabet");
+              handleListItemClick("newest");
             }}
             sx={{
-              backgroundColor: isAlphabetSortActive
+              backgroundColor: isNewestSortActive
                 ? "rgb(121 218 255)"
                 : "transparent",
             }}
           >
             <ListItemIcon sx={{ minWidth: "35px" }}>
-              <SortByAlphaIcon />
+              <TodayIcon />
             </ListItemIcon>
             <Typography
-              sx={{ fontWeight: isAlphabetSortActive ? "400" : "300" }}
+              sx={{ fontWeight: isNewestSortActive ? "400" : "300" }}
             >
-              Alphabet
+              Terbaru
             </Typography>
           </ListItemButton>
         </ListItem>
@@ -85,7 +89,7 @@ function SimpleDialog(props: SimpleDialogProps) {
   );
 }
 
-export default function Header() {
+export default function Header(props:headerProps ) {
   const [open, setOpen] = React.useState(false);
   const [sortType, setSortType] = React.useState("");
 
@@ -93,8 +97,9 @@ export default function Header() {
     setOpen(true);
   };
 
-  const handleClose = (value: string) => {
+  const handleClose = (value: string ) => {
     setOpen(false);
+    props.sortType(value)
     setSortType(value);
   };
 

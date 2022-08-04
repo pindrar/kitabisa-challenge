@@ -39,7 +39,27 @@ function getPercentage(value: number) {
   return percentage >= 100 ? 100 : Math.ceil(percentage)
 }
 
-export function getDonations() {
+function compareRemainingDay( a: Donation, b: Donation ) {
+  if ( a.remaining < b.remaining ){
+    return 1;
+  }
+  if ( a.remaining > b.remaining ){
+    return -1;
+  }
+  return 0;
+}
+
+function compareGoals( a: Donation, b: Donation ) {
+  if ( a.percentage < b.percentage ){
+    return 1;
+  }
+  if ( a.percentage > b.percentage ){
+    return -1;
+  }
+  return 0;
+}
+
+export function getDonations(sort: string | "newest" | "goals" ) {
   let donationsArray: Donation[] = [];
   donations.map((key) => {
     const donation: Donation = {
@@ -60,5 +80,10 @@ export function getDonations() {
     donationsArray.push(donation)
   });
 
-  return donationsArray;
+  const donationsSort = [...donationsArray]
+
+  if (sort === "newest") donationsSort.sort(compareRemainingDay)
+  if (sort === "goals") donationsSort.sort(compareGoals)
+
+  return donationsSort;
 }

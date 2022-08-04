@@ -25,6 +25,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
 };
 
 export default function Home(props: Props) {
+  const [sortType, setSortType] = useState("")
   if (props) {
     setDonations(props.data)
   } 
@@ -37,8 +38,8 @@ export default function Home(props: Props) {
         <title>Donations</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <CardsContainer data={getDonations()}/>
+      <Header sortType={(sort) => setSortType(sort)}/>
+      <CardsContainer data={getDonations(sortType)}/>
     </Container>
   );
 }
