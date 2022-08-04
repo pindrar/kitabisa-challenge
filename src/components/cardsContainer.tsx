@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import DonationCards from "./donationCard";
 import { Donation } from "../models/donations";
+import { cardContainerSx } from "../../styles/style";
 
 interface cardsContainerProps {
   data: Array<Donation>;
@@ -11,11 +12,7 @@ interface cardsContainerProps {
 
 export default function CardsContainer(props: cardsContainerProps) {
   return (
-    <Container
-      sx={{
-        paddingTop: 10,
-      }}
-    >
+    <Container sx={cardContainerSx}>
       <Box>
         <Grid container spacing={2}>
           {props.data.map((donation, index) => (

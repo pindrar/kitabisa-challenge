@@ -3,88 +3,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import SortIcon from "@mui/icons-material/Sort";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Dialog from "@mui/material/Dialog";
-import PersonIcon from "@mui/icons-material/Person";
-import TodayIcon from "@mui/icons-material/Today";
-import DoneIcon from "@mui/icons-material/Done";
-import Typography from "@mui/material/Typography";
 import Image from "next/image";
-
-export interface SimpleDialogProps {
-  open: boolean;
-  selectedValue: string;
-  onClose: (value: string) => void;
-}
+import CustomDialog from "./customDialog";
+import { headerContainer, headerBox, flex1 } from "../../styles/style";
 
 interface headerProps {
   sortType: (value: string | "newest" | "goals") => void;
-}
-
-function SimpleDialog(props: SimpleDialogProps) {
-  const { onClose, selectedValue, open } = props;
-
-  const isNewestSortActive = selectedValue === "newest";
-  const isGoalsSortActive = selectedValue === "goals";
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value: string) => {
-    onClose(value);
-  };
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Urutkan berdasarkan?</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        <ListItem disablePadding>
-          <ListItemButton
-            onClick={() => {
-              handleListItemClick("newest");
-            }}
-            sx={{
-              backgroundColor: isNewestSortActive
-                ? "rgb(121 218 255)"
-                : "transparent",
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "35px" }}>
-              <TodayIcon />
-            </ListItemIcon>
-            <Typography sx={{ fontWeight: isNewestSortActive ? "400" : "300" }}>
-              Terbaru
-            </Typography>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton
-            onClick={() => {
-              handleListItemClick("goals");
-            }}
-            sx={{
-              backgroundColor: isGoalsSortActive
-                ? "rgb(121 218 255)"
-                : "transparent",
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: "35px" }}>
-              <DoneIcon />
-            </ListItemIcon>
-            <Typography sx={{ fontWeight: isGoalsSortActive ? "400" : "300" }}>
-              Goals
-            </Typography>
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Dialog>
-  );
 }
 
 export default function Header(props: headerProps) {
@@ -102,38 +26,9 @@ export default function Header(props: headerProps) {
   };
 
   return (
-    <Container
-      sx={{
-        top: 0,
-        left: 0,
-        right: 0,
-        display: "flex",
-        alignItems: "center",
-        paddingTop: "10px",
-        paddingBottom: "10px",
-        position: "fixed",
-        backdropFilter: "blur(20px)",
-        borderStyle: "solid",
-        borderColor: "#E7EBF0",
-        borderWidth: 0,
-        borderBottomWidth: "thin",
-        background: "rgba(255,255,255,0.7)",
-        color: "#2D3843",
-        zIndex: 1,
-        maxWidth: "100vw !important",
-      }}
-    >
-      <Box
-        sx={{
-          width: {
-            xs: "100vw",
-            md: "1200px",
-          },
-          display: "flex",
-          margin: "auto",
-        }}
-      >
-        <Box sx={{ flex: 1 }}>
+    <Container sx={headerContainer}>
+      <Box sx={headerBox}>
+        <Box sx={flex1}>
           <Image
             src="/logo.png"
             alt="Picture of the author"
@@ -149,7 +44,7 @@ export default function Header(props: headerProps) {
           >
             Sort
           </Button>
-          <SimpleDialog
+          <CustomDialog
             selectedValue={sortType}
             open={open}
             onClose={handleClose}

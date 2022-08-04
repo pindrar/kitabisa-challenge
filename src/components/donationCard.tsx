@@ -6,25 +6,14 @@ import Typography from "@mui/material/Typography";
 import ProgressBar from "./progressBar";
 import Box from "@mui/material/Box";
 import { Donation } from "../models/donations";
+import { cardMediaSx, cardSx } from "../../styles/style";
 
 export default function DonationCard(donation: Donation) {
   return (
-    <Card
-      sx={{
-        minHeight: {
-          xs: 300,
-          md: 360,
-        },
-      }}
-    >
+    <Card sx={cardSx}>
       <CardMedia
         component="img"
-        sx={{
-          height: {
-            xs: 160,
-            md: 200,
-          },
-        }}
+        sx={cardMediaSx}
         image={donation.image}
         alt="green iguana"
       />
