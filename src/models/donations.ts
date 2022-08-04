@@ -21,8 +21,8 @@ export interface Donation {
   category: string;
   remaining: number;
   percentage: number;
-  received: number;
-  target: number;
+  received: string;
+  target: string;
   image: string;
   order: number;
   title: string;
@@ -37,6 +37,13 @@ export function setDonations(data: Array<DonationResponse>) {
 function getPercentage(value: number) {
   const percentage = value * 100;
   return percentage >= 100 ? 100 : Math.ceil(percentage);
+}
+
+function getRupiah (value: number) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  }).format(value);
 }
 
 function compareRemainingDay(a: Donation, b: Donation) {
@@ -72,8 +79,8 @@ export function getDonations(sort: string | "newest" | "goals") {
       category: key.category_name,
       remaining: key.days_remaining,
       percentage: getPercentage(key.donation_percentage),
-      received: key.donation_received,
-      target: key.donation_target,
+      received: getRupiah(key.donation_received),
+      target: getRupiah(key.donation_target),
       order: key.order,
     };
 

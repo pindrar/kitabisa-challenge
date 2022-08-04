@@ -28,16 +28,20 @@ export default function DonationCard(donation: Donation) {
           justifyContent={"space-between"}
         >
           <Box>
-            <Typography variant="subtitle2" fontWeight={600}>
+            <Typography variant="caption" fontWeight={600}>
               Terkumpul
             </Typography>
             <Typography variant="subtitle2">{donation.received}</Typography>
+            <Typography variant="caption" fontWeight={600}>
+              Dari
+            </Typography>
+            <Typography variant="subtitle2">{donation.target}</Typography>
           </Box>
           <Box>
-            <Typography variant="subtitle2" fontWeight={600}>
+            <Typography variant="caption" fontWeight={600}>
               Sisa Hari
             </Typography>
-            <Typography variant="subtitle2">{donation.remaining}</Typography>
+            <Typography variant="subtitle2" textAlign="end">{donation.remaining} Hari</Typography>
           </Box>
         </Box>
       </CardContent>

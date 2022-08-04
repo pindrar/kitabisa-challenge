@@ -36,7 +36,7 @@ export default function Home(props: Props) {
       }}
     >
       <Head>
-        <title>Donations</title>
+        <title>Kitabisa</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header sortType={(sort) => setSortType(sort)} />

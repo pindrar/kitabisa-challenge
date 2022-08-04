@@ -9,8 +9,9 @@ export const cardMediaSx: SxProps = {
 
 export const cardSx: SxProps = {
   minHeight: {
-    xs: 300,
-    md: 360,
+    xs: 320,
+    sm: 380,
+    md: 420,
   },
 };
 
