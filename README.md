@@ -3,9 +3,7 @@ author: Pratama Indra Raswoko
 
 This is the project of Kitabisa code challange
 
-This project created using Next.js + MUI with TypeScript
-This project rendered with SSR (Server side rendering)
-This project used jest + React testing library for unit test
+This project created using Next.js + MUI + TypeScript rendered with SSR (Server side rendering) and using jest + React testing library for unit test
 
 ## How to use for first time
 
