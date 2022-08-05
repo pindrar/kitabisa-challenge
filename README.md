@@ -1,29 +1,62 @@
-# Next.js + Jest
+# Kitabisa code challange
+author: Pratama Indra Raswoko
 
-This example shows how to configure Jest to work with Next.js.
+This is the project of Kitabisa code challange
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
+This project created using Next.js + MUI with TypeScript
+This project rendered with SSR (Server side rendering)
+This project used jest + React testing library for unit test
 
-## How to Use
-
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
+## How to use for first time
 
 In your terminal, run the following command:
 
 ```bash
-npx create-next-app --example with-jest with-jest-app
+npm install
 ```
+
+## How to Run the Development enviroment
+
+In your terminal, run the following command:
 
 ```bash
-yarn create next-app --example with-jest with-jest-app
+npm run dev
 ```
+
+## How to Run unit test
+
+In your terminal, run the following command:
 
 ```bash
-pnpm create next-app --example with-jest with-jest-app
+npm run test
 ```
 
-## Run Jest Tests
+## How to Run see the code coverage
+
+In your terminal, run the following command:
 
 ```bash
-npm test
+npx jest --coverage
 ```
+
+## How to build
+
+In your terminal, run the following command:
+
+```bash
+npm run build
+```
+This command will generate the build version. You can get the build result in folder .next
+
+## How to Run the build result
+
+In your terminal, run the following command:
+
+```bash
+npm run start
+```
+This command will run the build result from folder .next
+
+## Project performance, SEO, etc
+
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/public/performance.jpg?raw=true)
