@@ -62,4 +62,4 @@ This command will run the build result from folder .next
 
 ![alt text](https://github.com/pindrar/kitabisa-challenge/blob/main/public/performance.png?raw=true)
 
-note: There is one image which failed to load. This caused by the service of this image return Your connection is not private: "This server could not prove that it is img.staging.kitabisa.cc; its security certificate expired 118 days ago."
+note: There is one image which failed to load. This caused by the service of this image return Your connection is not private: "This server could not prove that it is img.staging.kitabisa.cc; its security certificate expired 118 days ago." You can see the image after you open the image in new tab and accept "Proceed to img.staging.kitabisa.cc (unsafe)". After that if you refresh the page you can see the image.
