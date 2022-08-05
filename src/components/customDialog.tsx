@@ -30,11 +30,12 @@ export default function CustomDialog(props: customDialogProps) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} data-testid="close-modal">
       <DialogTitle>Urutkan berdasarkan?</DialogTitle>
       <List sx={{ pt: 0 }}>
         <ListItem disablePadding>
           <ListItemButton
+            data-testid="sort-newest"
             onClick={() => {
               handleListItemClick("newest");
             }}
@@ -54,6 +55,7 @@ export default function CustomDialog(props: customDialogProps) {
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton
+          data-testid="sort-goals"
             onClick={() => {
               handleListItemClick("goals");
             }}

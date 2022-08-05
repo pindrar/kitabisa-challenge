@@ -1,6 +1,5 @@
-import { render, fireEvent, getByText, getByTestId } from "@testing-library/react";
-import Home, { getServerSideProps } from "@/pages/index";
 import * as axios from "axios";
+import { getDomain, getDonationsResponse } from "../src/api/api"
 
 const data = [
   {
@@ -11,7 +10,7 @@ const data = [
     expired: 2147483647,
     image:
       "https://img.staging.kitabisa.cc/size/664x357/0f9a7205-79ef-49c9-a95a-49347fbd00a6.jpg",
-    days_remaining: 5,
+    days_remaining: 0,
     donation_received: 178613497,
     campaigner: "Kitabisa.com",
     campaigner_type: "PERSONAL",
@@ -251,8 +250,8 @@ const data = [
 
 jest.mock("axios");
 
-describe("Home", () => {
-  it("getServerSideProps", async () => {
+describe("Api", () => {
+  it("getDomain http", () => {
     const contex = {
       req: {
         headers: {
@@ -261,33 +260,28 @@ describe("Home", () => {
         }
       }
     }
+    expect(getDomain(contex)).toEqual('http://localhost')
+  });
+
+  it("getDomain https", () => {
+    const contex = {
+      req: {
+        headers: {
+          "x-forwarded-proto": true,
+          "host": "localhost"
+        }
+      }
+    }
+    expect(getDomain(contex)).toEqual('https://localhost')
+  });
+
+  it("getDonationsResponse success", async () => {
     axios.get.mockImplementation(() => Promise.resolve({ data: {data} }));
-    expect(await getServerSideProps(contex)).toEqual({props: {data}})
+    expect(await getDonationsResponse("https://localhost")).toEqual(data)
   });
 
-  it("renders a page", () => {
-    const container = render(<Home data={data} />);
-    const title = container.getByAltText("Kitabisa");
-    expect(title.tagName).toEqual("IMG");
+  it("getDonationsResponse error", async () => {
+    axios.get.mockImplementation(() => Promise.reject({ error: "error" }));
+    expect(await getDonationsResponse("https://localhost")).toEqual({ error: "error" })
   });
-
-  it("sort newest", () => {
-    const container = render(<Home data={data} />);
-    fireEvent.click(container.getByTestId('sort-button'))
-    fireEvent.click(container.getByTestId('sort-newest'))
-    expect(container.getByText('Urutkan berdasarkan?')).toBeInTheDocument()
-  });
-
-  it("sort goals", () => {
-    const container = render(<Home data={data} />);
-    fireEvent.click(container.getByTestId('sort-button'))
-    fireEvent.click(container.getByTestId('sort-goals'))
-    expect(container.getByText('Urutkan berdasarkan?')).toBeInTheDocument()
-  });
-
-  it("close the custom modal", () => {
-    const container = render(<Home data={data} />);
-    fireEvent.click(container.getByTestId('sort-button'))
-    fireEvent.click(container.getByTestId('close-modal'))
-  })
 });

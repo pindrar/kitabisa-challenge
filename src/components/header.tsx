@@ -40,6 +40,7 @@ export default function Header(props: headerProps) {
           <Button
             variant="outlined"
             startIcon={<SortIcon />}
+            data-testid="sort-button"
             onClick={handleClickOpen}
           >
             Sort
