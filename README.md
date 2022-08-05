@@ -1,6 +1,8 @@
 # Kitabisa code challange
 author: Pratama Indra Raswoko
 
+Live version: https://kitabisa-challenge.vercel.app/
+
 This is the project of Kitabisa code challange
 
 This project created using Next.js + MUI + TypeScript rendered with SSR (Server side rendering) and using jest + React testing library for unit test
