@@ -36,6 +36,7 @@ In your terminal, run the following command:
 ```bash
 npx jest --coverage
 ```
+You can see the coverage result at [project-root]/coverage/lcov-report/index.html
 
 ## How to build
 
