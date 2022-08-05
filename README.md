@@ -59,4 +59,4 @@ This command will run the build result from folder .next
 
 ## Project performance, SEO, etc
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/public/performance.png?raw=true)
+![alt text](https://github.com/pindrar/kitabisa-challenge/blob/main/public/performance.png?raw=true)
