@@ -29,7 +29,7 @@ In your terminal, run the following command:
 npm run test
 ```
 
-## How to Run see the code coverage
+## How to generate the code coverage result
 
 In your terminal, run the following command:
 
